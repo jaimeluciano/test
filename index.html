@@ -9,28 +9,30 @@
          * Engineered for seamless Dark/Light mode switching
          */
         :root {
+            /* Light Mode - Tuned for the cyber-teal background */
             --primary-blue: #0284c7;    
             --text-main: #0f172a;       
-            --text-muted: #64748b;      
-            --card-bg: #ffffff;
+            --text-muted: #334155;      
+            /* Frosted glass white to let the background bleed through */
+            --card-bg: rgba(255, 255, 255, 0.75);
             --page-bg: #f8fafc;
-            --badge-bg: #f1f5f9;
-            --border-color: rgba(0, 0, 0, 0.08);
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            /* Light mode overlay for the background image */
-            --bg-overlay: rgba(248, 250, 252, 0.75); 
+            --badge-bg: rgba(241, 245, 249, 0.8);
+            --border-color: rgba(2, 132, 199, 0.2);
+            --card-shadow: 0 10px 30px rgba(0, 50, 75, 0.1);
+            /* Lighter, cooler overlay to match the teal image */
+            --bg-overlay: rgba(235, 248, 255, 0.65); 
         }
 
         [data-theme="dark"] {
+            /* Dark Mode - Kept original preferences but added slight transparency */
             --primary-blue: #38bdf8;    
             --text-main: #f8fafc;       
             --text-muted: #94a3b8;      
-            --card-bg: #1e293b;
+            --card-bg: rgba(30, 41, 59, 0.85);
             --page-bg: #0f172a;
-            --badge-bg: #0f172a;
+            --badge-bg: rgba(15, 23, 42, 0.8);
             --border-color: rgba(255, 255, 255, 0.1);
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            /* Dark mode overlay for the background image */
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
             --bg-overlay: rgba(15, 23, 42, 0.88); 
         }
 
@@ -40,7 +42,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: var(--text-main);
             background-color: var(--page-bg);
-            /* Applied the uploaded image with an adaptive theme overlay */
+            /* Applies the uploaded image with an adaptive theme overlay */
             background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('backGround1.jpg');
             background-size: cover;
             background-attachment: fixed;
@@ -49,8 +51,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* * THEME TOGGLE BUTTON 
-         */
+        /* * THEME TOGGLE BUTTON */
         .theme-toggle {
             position: absolute;
             top: 25px;
@@ -64,6 +65,7 @@
             height: 44px;
             cursor: pointer;
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -82,20 +84,17 @@
             fill: currentColor;
         }
 
-        /* * HERO BANNER 
-         */
+        /* * HERO BANNER */
         .hero-banner {
-            height: 460px; /* Adjusted to align the fade with the middle of the profile box */
+            height: 460px; 
             background-image: url('Dna Nano Tech Wallpaper HD.jpg');
             background-size: cover;
             background-position: center 20%;
-            /* Fades the bottom of the banner to blend seamlessly into the new background image */
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
         }
 
-        /* * MAIN GRID LAYOUT 
-         */
+        /* * MAIN GRID LAYOUT */
         .layout-container {
             max-width: 1250px;
             margin: 0 auto;
@@ -107,29 +106,31 @@
             z-index: 10;
         }
 
-        /* * LEFT COLUMN: PROFILE CARD 
-         */
+        /* * LEFT COLUMN: PROFILE CARD */
         .profile-card {
             background: var(--card-bg);
             border-radius: 12px;
             box-shadow: var(--card-shadow);
             padding: 0 30px 30px 30px;
-            margin-top: -230px; /* Adjusted to sit cleanly at the halfway point of the banner's height */
+            margin-top: -230px; 
             border: 1px solid var(--border-color);
             text-align: center;
+            /* Glassmorphism blur applied to cards */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .profile-logo {
             width: 160px;
             height: 160px;
-            background-color: #000;
-            background-image: url('Microsoft_Cortana_transparent.svg.png');
-            background-size: 85%;
+            background-color: transparent;
+            background-image: url('Cortana.png'); /* Updated to Cortana.png */
+            background-size: cover; /* Ensures the image fills the circle */
             background-position: center;
             background-repeat: no-repeat;
             border-radius: 50%;
-            border: 6px solid var(--card-bg);
+            border: 6px solid var(--badge-bg); /* Switched border to match card transparency */
             margin: -80px auto 20px auto;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             transition: border-color 0.3s ease;
@@ -161,6 +162,28 @@
             letter-spacing: 1px;
         }
 
+        /* * CERTIFICATION BADGES */
+        .cert-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .cert-badge {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .cert-badge:hover {
+            transform: translateY(-4px) scale(1.05);
+        }
+
         .contact-info {
             text-align: left;
             font-size: 0.95rem;
@@ -175,8 +198,7 @@
             font-weight: 500;
         }
 
-        /* * RIGHT COLUMN: CONTENT CARDS 
-         */
+        /* * RIGHT COLUMN: CONTENT CARDS */
         .content-column {
             margin-top: -180px; 
         }
@@ -188,6 +210,9 @@
             padding: 40px;
             margin-bottom: 30px;
             border: 1px solid var(--border-color);
+            /* Glassmorphism blur applied to cards */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
@@ -213,8 +238,7 @@
             border-radius: 2px;
         }
 
-        /* * TABBED PROFILE SECTION 
-         */
+        /* * TABBED PROFILE SECTION */
         .tab-controls {
             display: flex;
             gap: 10px;
@@ -254,8 +278,7 @@
             animation: fadeIn 0.4s ease-in;
         }
 
-        /* * LISTS & DATA PRESENTATION 
-         */
+        /* * LISTS & DATA PRESENTATION */
         h3 {
             font-size: 1.2rem;
             color: var(--text-main);
@@ -286,8 +309,7 @@
             top: -2px;
         }
 
-        /* * TECH STACK GRID 
-         */
+        /* * TECH STACK GRID */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -311,8 +333,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* * RESPONSIVE DESIGN (MOBILE) 
-         */
+        /* * RESPONSIVE DESIGN (MOBILE) */
         @media (max-width: 900px) {
             .layout-container {
                 grid-template-columns: 1fr;
@@ -353,11 +374,11 @@
                 
                 <div class="profile-title">System Architect</div>
                 
-                <div class="skills-grid" style="margin-bottom: 25px;">
-                    <div class="skill-badge">AWS SAP-C02</div>
-                    <div class="skill-badge">AWS ANS-C01</div>
-                    <div class="skill-badge">FinOps Pro</div>
-                    <div class="skill-badge">VMware VCP-DCV</div>
+                <div class="cert-grid">
+                    <img src="AWSSAP.png" alt="AWS Certified Solutions Architect - Professional" class="cert-badge" title="AWS SAP-C02">
+                    <img src="MCASAE.png" alt="Microsoft Certified: Azure Solutions Architect Expert" class="cert-badge" title="Microsoft Certified Azure Solutions Architect Expert">
+                    <img src="FinOps.png" alt="FinOps Certified Professional" class="cert-badge" title="FinOps Professional">
+                    <img src="vmware-certified-professional-vmware-cloud-2023.webp" alt="VMware VCP-DCV" class="cert-badge" title="VMware VCP-DCV">
                 </div>
 
                 <div class="contact-info">

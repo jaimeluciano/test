@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaime Luciano | System Architect</title>
+    <style>
+        /* * COLOR PALETTE & THEMING VARIABLES 
+         * Engineered for seamless Dark/Light mode switching
+         */
+        :root {
+            --primary-blue: #0284c7;    
+            --text-main: #0f172a;       
+            --text-muted: #64748b;      
+            --card-bg: #ffffff;
+            --page-bg: #f8fafc;
+            --badge-bg: #f1f5f9;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            /* Light mode overlay for the background image */
+            --bg-overlay: rgba(248, 250, 252, 0.75); 
+        }
+
+        [data-theme="dark"] {
+            --primary-blue: #38bdf8;    
+            --text-main: #f8fafc;       
+            --text-muted: #94a3b8;      
+            --card-bg: #1e293b;
+            --page-bg: #0f172a;
+            --badge-bg: #0f172a;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            /* Dark mode overlay for the background image */
+            --bg-overlay: rgba(15, 23, 42, 0.88); 
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            background-color: var(--page-bg);
+            /* Applied the uploaded image with an adaptive theme overlay */
+            background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('backGround1.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* * THEME TOGGLE BUTTON 
+         */
+        .theme-toggle {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            z-index: 100;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0,0,0,0.7);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* * HERO BANNER 
+         */
+        .hero-banner {
+            height: 460px; /* Adjusted to align the fade with the middle of the profile box */
+            background-image: url('Dna Nano Tech Wallpaper HD.jpg');
+            background-size: cover;
+            background-position: center 20%;
+            /* Fades the bottom of the banner to blend seamlessly into the new background image */
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+        }
+
+        /* * MAIN GRID LAYOUT 
+         */
+        .layout-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* * LEFT COLUMN: PROFILE CARD 
+         */
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 0 30px 30px 30px;
+            margin-top: -230px; /* Adjusted to sit cleanly at the halfway point of the banner's height */
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .profile-logo {
+            width: 160px;
+            height: 160px;
+            background-color: #000;
+            background-image: url('Microsoft_Cortana_transparent.svg.png');
+            background-size: 85%;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            border: 6px solid var(--card-bg);
+            margin: -80px auto 20px auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: border-color 0.3s ease;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .profile-pronunciation {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.75rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            display: block;
+            line-height: 1.5;
+        }
+
+        .profile-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-info {
+            text-align: left;
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            color: var(--text-muted);
+        }
+
+        .contact-info a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* * RIGHT COLUMN: CONTENT CARDS 
+         */
+        .content-column {
+            margin-top: -180px; 
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        h2.section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2.section-title::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 24px;
+            background: var(--primary-blue);
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+
+        /* * TABBED PROFILE SECTION 
+         */
+        .tab-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary-blue);
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        /* * LISTS & DATA PRESENTATION 
+         */
+        h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        ul.achievement-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul.achievement-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        ul.achievement-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            font-weight: bold;
+            top: -2px;
+        }
+
+        /* * TECH STACK GRID 
+         */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* * RESPONSIVE DESIGN (MOBILE) 
+         */
+        @media (max-width: 900px) {
+            .layout-container {
+                grid-template-columns: 1fr;
+            }
+            .content-column {
+                margin-top: 0;
+            }
+            .profile-card {
+                margin-top: -120px;
+            }
+            .hero-banner {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark/Light Mode">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18.75a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zM6.166 18.894a.75.75 0 001.06 1.06l1.591-1.59a.75.75 0 10-1.06-1.061l-1.591 1.59zM4.5 12a.75.75 0 01-.75.75H1.5a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM6.166 5.106a.75.75 0 00-1.06 1.06l1.59 1.591a.75.75 0 101.061-1.06l-1.59-1.591z" />
+        </svg>
+    </button>
+
+    <div class="hero-banner"></div>
+
+    <div class="layout-container">
+        
+        <aside>
+            <div class="profile-card">
+                <div class="profile-logo"></div>
+                
+                <h1 class="profile-name">Jaime Luciano</h1>
+                <span class="profile-pronunciation">
+                    /ˈxaime luˈsjano/ (ES) &nbsp;|&nbsp; /ˈhaɪmeɪ ˌluːsiˈɑːnoʊ/ (EN)<br>
+                    /ˈdʒajme luˈtʃano/ (IT) &nbsp;|&nbsp; /ˈʒajmi luˈsjɐnu/ (PT)
+                </span>
+                
+                <div class="profile-title">System Architect</div>
+                
+                <div class="skills-grid" style="margin-bottom: 25px;">
+                    <div class="skill-badge">AWS SAP-C02</div>
+                    <div class="skill-badge">AWS ANS-C01</div>
+                    <div class="skill-badge">FinOps Pro</div>
+                    <div class="skill-badge">VMware VCP-DCV</div>
+                </div>
+
+                <div class="contact-info">
+                    <p><strong>Location:</strong> DMV Area (Northern VA)</p>
+                    <p><strong>Email:</strong> <a href="mailto:Jaime.luciano@icloud.com">Jaime.luciano@icloud.com</a></p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jaime-luciano-71113b86/" target="_blank">View Profile</a></p>
+                    <p><strong>Clearance:</strong> Available upon request</p>
+                    <p><strong>Endurance:</strong> IRONMAN Finisher</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content-column">
+            
+            <div class="content-card">
+                <h2 class="section-title">Executive Profile</h2>
+                
+                <div class="tab-controls">
+                    <button class="tab-btn active" onclick="switchTab(event, 'tab-commercial')">The Professional Visionary</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-artisan')">The Technical Artisan</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-bold')">The Bold Architect</button>
+                </div>
+
+                <div id="tab-commercial" class="tab-content active">
+                    Blending the precision of an engineer with the vision of an artist, my approach to cloud architecture is rooted in craftsmanship. Whether designing intricate Hub-and-Spoke multi-cloud networks or optimizing enterprise infrastructure, perfection lies in the smallest details. Beyond the terminal, a deep passion for art, music, and design heavily influences my technical work, ensuring every solution is not just functional, but elegant. A fearless pursuit of the extraordinary drives everything I do—a mindset forged through extreme sports like paragliding, snowboarding, and completing the IRONMAN triathlon. I build robust, futuristic, and versatile infrastructures with the exact same endurance, discipline, and lack of fear.
+                </div>
+
+                <div id="tab-artisan" class="tab-content">
+                    Cloud architecture is a modern art form. As a versatile and futuristic system architect, the goal is always to design IT infrastructure that is as elegant as it is resilient. This methodology relies on a deep appreciation for craftsmanship, recognizing that the hardest accomplishments often hinge on the smallest, easily overlooked details. That same drive for perfection and high-performance execution extends far beyond the data center. Conquering extreme challenges—from freestyle ice skating and surfing to crossing the finish line of an IRONMAN triathlon—has cultivated a mindset completely devoid of fear. Complex multi-cloud federations and massive digital transformations are simply the next grand challenge to conquer.
+                </div>
+
+                <div id="tab-bold" class="tab-content">
+                    Dreamer. Visionary. Architect. There is a distinct rhythm to building scalable, zero-trust cloud environments, and my work operates at the intersection of deep technical expertise and creative design. Perfection is in the details, and I treat complex infrastructure-as-code deployments with the same care a craftsman gives to a masterpiece. Fear doesn't factor into the equation. My energy comes from pushing limits, whether that means carving down a mountain on a snowboard, paragliding, or grinding through an IRONMAN triathlon. That exact same relentless energy, versatility, and passion for the extraordinary is what I bring to enterprise cloud strategy and digital transformation.
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="section-title">Architectural Highlights</h2>
+                
+                <h3>Hybrid & Multi-Cloud Connectivity</h3>
+                <ul class="achievement-list">
+                    <li>Architected 10Gb AWS Direct Connect circuits for multi-account landing zones, ensuring strict alignment with the AWS Well‑Architected Framework.</li>
+                    <li>Designed Azure hub-and-spoke topologies featuring VNet peering, custom routing, and UDRs for ExpressRoute subscribers, guaranteeing consistent enterprise connectivity.</li>
+                    <li>Engineered secure cross-cloud federation through IPsec VPN with BGP integration for frictionless communication between AWS and Azure ecosystems.</li>
+                </ul>
+
+                <h3>Infrastructure as Code & Automation</h3>
+                <ul class="achievement-list">
+                    <li>Championed NetDevOps adoption by authoring advanced CloudFormation templates, Terraform modules, and ARM/Bicep deployments to automate infrastructure at scale.</li>
+                    <li>Automated AWS Transit Gateway attachment orchestration, centralizing routing and security protocols for complex multi-VPC architectures.</li>
+                    <li>Constructed robust CI/CD pipelines utilizing AWS Developer Tools (CodeCommit, CodeDeploy, CodePipeline) to provision immutable infrastructure.</li>
+                </ul>
+
+                <h3>Identity, Zero-Trust Security & FinOps</h3>
+                <ul class="achievement-list">
+                    <li>Architected comprehensive cross-cloud IAM utilizing Entra ID, Azure RBAC, and AWS IAM Identity Center under a unified governance and MFA model.</li>
+                    <li>Implemented NSX-T microsegmentation and zero-trust network boundaries mapped directly to the NIST Cybersecurity Framework (CSF) 2.0.</li>
+                    <li>Developed FinOps intelligence dashboards utilizing advanced KQL and Log Analytics to eliminate cloud waste, optimize DTO costs, and execute showback/chargeback reporting.</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-badge">AWS Direct Connect</div>
+                    <div class="skill-badge">Azure ExpressRoute</div>
+                    <div class="skill-badge">Hub-and-Spoke</div>
+                    <div class="skill-badge">Transit Gateway</div>
+                    <div class="skill-badge">Terraform & Bicep</div>
+                    <div class="skill-badge">NetDevOps</div>
+                    <div class="skill-badge">Entra ID / IAM</div>
+                    <div class="skill-badge">Zero-Trust Security</div>
+                    <div class="skill-badge">FinOps</div>
+                    <div class="skill-badge">KQL Analytics</div>
+                    <div class="skill-badge">VMware NSX-T</div>
+                    <div class="skill-badge">Disaster Recovery</div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Tab Switching Logic ---
+        function switchTab(evt, tabId) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // --- Dark/Light Mode Toggle Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        
+        // Check for saved user preference, if any, on load
+        const savedTheme = localStorage.getItem('site-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            // Get current theme state
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            let targetTheme = "light";
+
+            if (currentTheme === "light") {
+                targetTheme = "dark";
+            }
+
+            // Apply new theme and save to LocalStorage
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            localStorage.setItem('site-theme', targetTheme);
+        });
+    </script>
+</body>
+</html>

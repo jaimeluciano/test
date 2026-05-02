@@ -9,18 +9,18 @@
          * Engineered for seamless Dark/Light mode switching
          */
         :root {
-            /* Light Mode - Tuned for the cyber-teal background */
-            --primary-blue: #0284c7;    
-            --text-main: #0f172a;       
-            --text-muted: #334155;      
-            /* Frosted glass white to let the background bleed through */
-            --card-bg: rgba(255, 255, 255, 0.75);
-            --page-bg: #f8fafc;
-            --badge-bg: rgba(241, 245, 249, 0.8);
-            --border-color: rgba(2, 132, 199, 0.2);
-            --card-shadow: 0 10px 30px rgba(0, 50, 75, 0.1);
-            /* Lighter, cooler overlay to match the teal image */
-            --bg-overlay: rgba(235, 248, 255, 0.65); 
+            /* Light Mode - Tuned specifically for the cyan HD tech background */
+            --primary-blue: #00a8cc;    /* High-tech cyan */
+            --text-main: #0b192c;       /* Deep teal/navy for high readability */
+            --text-muted: #1e3e59;      
+            /* Frosted glass cyan to blend with the background image */
+            --card-bg: rgba(230, 248, 255, 0.85);
+            --page-bg: #e0f4fc;
+            --badge-bg: rgba(200, 240, 255, 0.8);
+            --border-color: rgba(0, 168, 204, 0.4);
+            --card-shadow: 0 8px 32px rgba(0, 80, 120, 0.15);
+            /* Overlay tailored to let the HD tech lines pop */
+            --bg-overlay: rgba(240, 252, 255, 0.6); 
         }
 
         [data-theme="dark"] {
@@ -124,16 +124,16 @@
         .profile-logo {
             width: 160px;
             height: 160px;
-            background-color: transparent;
-            background-image: url('Cortana.png'); /* Updated to Cortana.png */
-            background-size: cover; /* Ensures the image fills the circle */
+            background-color: #000000; /* Forced black background */
+            background-image: url('Cortana.png');
+            background-size: contain; /* Ensures the logo isn't cut off */
             background-position: center;
             background-repeat: no-repeat;
             border-radius: 50%;
-            border: 6px solid var(--badge-bg); /* Switched border to match card transparency */
+            border: 3px solid var(--primary-blue);
             margin: -80px auto 20px auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            transition: border-color 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 168, 204, 0.4); /* Subtle cyan tech glow */
+            transition: all 0.3s ease;
         }
 
         .profile-name {
@@ -184,18 +184,36 @@
             transform: translateY(-4px) scale(1.05);
         }
 
-        .contact-info {
-            text-align: left;
-            font-size: 0.95rem;
+        /* * SOCIAL LINKS SECTION */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
             border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-            color: var(--text-muted);
+            padding-top: 25px;
         }
 
-        .contact-info a {
-            color: var(--primary-blue);
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
             text-decoration: none;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .social-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
         }
 
         /* * RIGHT COLUMN: CONTENT CARDS */
@@ -381,12 +399,15 @@
                     <img src="vmware-certified-professional-vmware-cloud-2023.webp" alt="VMware VCP-DCV" class="cert-badge" title="VMware VCP-DCV">
                 </div>
 
-                <div class="contact-info">
-                    <p><strong>Location:</strong> DMV Area (Northern VA)</p>
-                    <p><strong>Email:</strong> <a href="mailto:Jaime.luciano@icloud.com">Jaime.luciano@icloud.com</a></p>
-                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jaime-luciano-71113b86/" target="_blank">View Profile</a></p>
-                    <p><strong>Clearance:</strong> Available upon request</p>
-                    <p><strong>Endurance:</strong> IRONMAN Finisher</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" target="_blank" title="Visit LinkedIn Profile">
+                        <img src="LI-In-Bug.png" alt="LinkedIn" class="social-icon">
+                        LinkedIn
+                    </a>
+                    <a href="#" class="social-link" target="_blank" title="Visit Twitter Profile">
+                        <img src="twitter.png" alt="Twitter" class="social-icon">
+                        Twitter
+                    </a>
                 </div>
             </div>
         </aside>

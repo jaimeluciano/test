@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,22 +9,21 @@
          * Engineered for seamless Dark/Light mode switching
          */
         :root {
-            /* Light Mode - Tuned specifically for the cyan HD tech background */
-            --primary-blue: #00a8cc;    /* High-tech cyan */
-            --text-main: #0b192c;       /* Deep teal/navy for high readability */
-            --text-muted: #1e3e59;      
-            /* Frosted glass cyan to blend with the background image */
-            --card-bg: rgba(230, 248, 255, 0.85);
-            --page-bg: #e0f4fc;
-            --badge-bg: rgba(200, 240, 255, 0.8);
-            --border-color: rgba(0, 168, 204, 0.4);
-            --card-shadow: 0 8px 32px rgba(0, 80, 120, 0.15);
-            /* Overlay tailored to let the HD tech lines pop */
-            --bg-overlay: rgba(240, 252, 255, 0.6); 
+            /* "Matrix" Mode (Replaces Light Mode) - High visibility background, green text */
+            --primary-blue: #00ff41;    /* Matrix Terminal Green */
+            --text-main: #00ff41;       
+            --text-muted: #00d632;      /* Slightly darker green for contrast */
+            --card-bg: rgba(0, 15, 5, 0.85); /* Dark glassy box to let background shine */
+            --page-bg: #000000;
+            --badge-bg: rgba(0, 40, 15, 0.8);
+            --border-color: rgba(0, 255, 65, 0.4);
+            --card-shadow: 0 8px 32px rgba(0, 255, 65, 0.15);
+            /* Very light overlay so the backGround1 image shows its full HD color */
+            --bg-overlay: rgba(0, 0, 0, 0.2); 
         }
 
         [data-theme="dark"] {
-            /* Dark Mode - Kept original preferences but added slight transparency */
+            /* Dark Mode (Default) - Cyan/Teal Tech Aesthetic */
             --primary-blue: #38bdf8;    
             --text-main: #f8fafc;       
             --text-muted: #94a3b8;      
@@ -115,7 +114,6 @@
             margin-top: -230px; 
             border: 1px solid var(--border-color);
             text-align: center;
-            /* Glassmorphism blur applied to cards */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -124,15 +122,15 @@
         .profile-logo {
             width: 160px;
             height: 160px;
-            background-color: #000000; /* Forced black background */
+            background-color: #000000;
             background-image: url('Cortana.png');
-            background-size: contain; /* Ensures the logo isn't cut off */
+            background-size: contain; 
             background-position: center;
             background-repeat: no-repeat;
             border-radius: 50%;
             border: 3px solid var(--primary-blue);
             margin: -80px auto 20px auto;
-            box-shadow: 0 0 20px rgba(0, 168, 204, 0.4); /* Subtle cyan tech glow */
+            box-shadow: 0 0 20px rgba(0, 168, 204, 0.4); 
             transition: all 0.3s ease;
         }
 
@@ -187,9 +185,10 @@
         /* * SOCIAL LINKS SECTION */
         .social-links {
             display: flex;
+            flex-direction: column; /* Organized vertically */
             justify-content: center;
             align-items: center;
-            gap: 25px;
+            gap: 15px;
             border-top: 1px solid var(--border-color);
             padding-top: 25px;
         }
@@ -197,12 +196,14 @@
         .social-link {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             color: var(--text-main);
             text-decoration: none;
             font-size: 1rem;
             font-weight: 600;
             transition: all 0.3s ease;
+            width: 100%;
+            justify-content: center;
         }
 
         .social-link:hover {
@@ -228,7 +229,6 @@
             padding: 40px;
             margin-bottom: 30px;
             border: 1px solid var(--border-color);
-            /* Glassmorphism blur applied to cards */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -280,7 +280,7 @@
 
         .tab-btn.active, .tab-btn:hover {
             background: var(--primary-blue);
-            color: #fff;
+            color: #page-bg;
         }
 
         .tab-content {
@@ -370,7 +370,7 @@
 </head>
 <body>
 
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark/Light Mode">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Matrix/Dark Mode" title="Toggle Matrix/Dark Mode">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18.75a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zM6.166 18.894a.75.75 0 001.06 1.06l1.591-1.59a.75.75 0 10-1.06-1.061l-1.591 1.59zM4.5 12a.75.75 0 01-.75.75H1.5a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM6.166 5.106a.75.75 0 00-1.06 1.06l1.59 1.591a.75.75 0 101.061-1.06l-1.59-1.591z" />
         </svg>
@@ -418,21 +418,21 @@
                 <h2 class="section-title">Executive Profile</h2>
                 
                 <div class="tab-controls">
-                    <button class="tab-btn active" onclick="switchTab(event, 'tab-commercial')">The Professional Visionary</button>
-                    <button class="tab-btn" onclick="switchTab(event, 'tab-artisan')">The Technical Artisan</button>
-                    <button class="tab-btn" onclick="switchTab(event, 'tab-bold')">The Bold Architect</button>
+                    <button class="tab-btn active" onclick="switchTab(event, 'tab-professional')">The Professional</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-colloquial')">The Unbound Explorer</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-technical')">The Architectural Artisan</button>
                 </div>
 
-                <div id="tab-commercial" class="tab-content active">
-                    Blending the precision of an engineer with the vision of an artist, my approach to cloud architecture is rooted in craftsmanship. Whether designing intricate Hub-and-Spoke multi-cloud networks or optimizing enterprise infrastructure, perfection lies in the smallest details. Beyond the terminal, a deep passion for art, music, and design heavily influences my technical work, ensuring every solution is not just functional, but elegant. A fearless pursuit of the extraordinary drives everything I do—a mindset forged through extreme sports like paragliding, snowboarding, and completing the IRONMAN triathlon. I build robust, futuristic, and versatile infrastructures with the exact same endurance, discipline, and lack of fear.
+                <div id="tab-professional" class="tab-content active">
+                    Blending engineering precision with artistic vision, cloud architecture is approached as a modern craft. Whether designing intricate Hub-and-Spoke networks or optimizing enterprise infrastructure, perfection is found in the smallest, easily overlooked details. A deep passion for art, music, and design heavily influences this technical methodology, ensuring every solution is not just functional, but elegant and resilient. A fearless pursuit of the extraordinary drives this futuristic mindset—forged through extreme sports like paragliding, snowboarding, surfing, and completing the IRONMAN triathlon. Robust, scalable, and versatile infrastructures are built with the exact same endurance, discipline, and absolute lack of fear.
                 </div>
 
-                <div id="tab-artisan" class="tab-content">
-                    Cloud architecture is a modern art form. As a versatile and futuristic system architect, the goal is always to design IT infrastructure that is as elegant as it is resilient. This methodology relies on a deep appreciation for craftsmanship, recognizing that the hardest accomplishments often hinge on the smallest, easily overlooked details. That same drive for perfection and high-performance execution extends far beyond the data center. Conquering extreme challenges—from freestyle ice skating and surfing to crossing the finish line of an IRONMAN triathlon—has cultivated a mindset completely devoid of fear. Complex multi-cloud federations and massive digital transformations are simply the next grand challenge to conquer.
+                <div id="tab-colloquial" class="tab-content">
+                    Some see cloud architecture as just servers and code; here, it is treated as a canvas. It is about being a dreamer and a visionary, bringing vibrant design and extraordinary craftsmanship into the digital space. Pushing limits is a daily routine, whether carving down a mountain on a snowboard, landing a freestyle ice skating jump, or grinding through the final miles of an IRONMAN. That distinct rhythm and relentless energy translate directly to building complex, zero-trust cloud environments. Fear simply does not factor into the equation. It is all about creating something futuristic and bold, treating massive digital transformations with the same care a craftsman gives a masterpiece.
                 </div>
 
-                <div id="tab-bold" class="tab-content">
-                    Dreamer. Visionary. Architect. There is a distinct rhythm to building scalable, zero-trust cloud environments, and my work operates at the intersection of deep technical expertise and creative design. Perfection is in the details, and I treat complex infrastructure-as-code deployments with the same care a craftsman gives to a masterpiece. Fear doesn't factor into the equation. My energy comes from pushing limits, whether that means carving down a mountain on a snowboard, paragliding, or grinding through an IRONMAN triathlon. That exact same relentless energy, versatility, and passion for the extraordinary is what I bring to enterprise cloud strategy and digital transformation.
+                <div id="tab-technical" class="tab-content">
+                    Operating at the intersection of deep technical expertise and creative design, enterprise cloud strategy is executed with relentless precision. The goal is always to engineer IT infrastructure that is as elegantly articulated as it is highly available. This methodology demands a deep appreciation for the finer details of multi-cloud federations and infrastructure-as-code deployments. The same high-performance execution required to conquer extreme challenges—from surfing unpredictable swells to surviving an IRONMAN triathlon—is applied to Zero-Trust network design. Complex architectures are designed with a fearless, versatile, and futuristic approach, ensuring scalable and resilient systems.
                 </div>
             </div>
 
@@ -495,11 +495,11 @@
             evt.currentTarget.classList.add('active');
         }
 
-        // --- Dark/Light Mode Toggle Logic ---
+        // --- Dark/Matrix Mode Toggle Logic ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         
-        // Check for saved user preference, if any, on load
-        const savedTheme = localStorage.getItem('site-theme') || 'light';
+        // Ensure default matches the new HTML attribute default
+        const savedTheme = localStorage.getItem('site-theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
         themeToggleBtn.addEventListener('click', () => {

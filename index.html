@@ -1,29 +1,14 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="dark">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jaime Luciano | System Architect</title>
     <style>
         /* * COLOR PALETTE & THEMING VARIABLES 
-         * Engineered for seamless Dark/Light mode switching
+         * Locked to the pure Dark/Neon aesthetic
          */
         :root {
-            /* "Matrix" Mode (Replaces Light Mode) - High visibility background, green text */
-            --primary-blue: #00ff41;    /* Matrix Terminal Green */
-            --text-main: #00ff41;       
-            --text-muted: #00d632;      /* Slightly darker green for contrast */
-            --card-bg: rgba(0, 15, 5, 0.85); /* Dark glassy box to let background shine */
-            --page-bg: #000000;
-            --badge-bg: rgba(0, 40, 15, 0.8);
-            --border-color: rgba(0, 255, 65, 0.4);
-            --card-shadow: 0 8px 32px rgba(0, 255, 65, 0.15);
-            /* Very light overlay so the backGround1 image shows its full HD color */
-            --bg-overlay: rgba(0, 0, 0, 0.2); 
-        }
-
-        [data-theme="dark"] {
-            /* Dark Mode (Default) - Cyan/Teal Tech Aesthetic */
             --primary-blue: #38bdf8;    
             --text-main: #f8fafc;       
             --text-muted: #94a3b8;      
@@ -33,6 +18,7 @@
             --border-color: rgba(255, 255, 255, 0.1);
             --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
             --bg-overlay: rgba(15, 23, 42, 0.88); 
+            --btn-text-active: #0f172a; 
         }
 
         body {
@@ -41,46 +27,11 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: var(--text-main);
             background-color: var(--page-bg);
-            /* Applies the uploaded image with an adaptive theme overlay */
             background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('backGround1.jpg');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* * THEME TOGGLE BUTTON */
-        .theme-toggle {
-            position: absolute;
-            top: 25px;
-            right: 30px;
-            z-index: 100;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .theme-toggle:hover {
-            background: rgba(0,0,0,0.7);
-            transform: scale(1.05);
-        }
-
-        .theme-toggle svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
         }
 
         /* * HERO BANNER */
@@ -116,7 +67,6 @@
             text-align: center;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .profile-logo {
@@ -130,8 +80,7 @@
             border-radius: 50%;
             border: 3px solid var(--primary-blue);
             margin: -80px auto 20px auto;
-            box-shadow: 0 0 20px rgba(0, 168, 204, 0.4); 
-            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3); 
         }
 
         .profile-name {
@@ -185,7 +134,7 @@
         /* * SOCIAL LINKS SECTION */
         .social-links {
             display: flex;
-            flex-direction: column; /* Organized vertically */
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
             gap: 15px;
@@ -231,7 +180,6 @@
             border: 1px solid var(--border-color);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         h2.section-title {
@@ -254,6 +202,18 @@
             background: var(--primary-blue);
             margin-right: 12px;
             border-radius: 2px;
+        }
+
+        h3.provider-title {
+            font-size: 1.25rem;
+            color: var(--primary-blue);
+            margin-top: 35px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* * TABBED PROFILE SECTION */
@@ -280,7 +240,7 @@
 
         .tab-btn.active, .tab-btn:hover {
             background: var(--primary-blue);
-            color: #page-bg;
+            color: var(--btn-text-active);
         }
 
         .tab-content {
@@ -327,23 +287,53 @@
             top: -2px;
         }
 
-        /* * TECH STACK GRID */
-        .skills-grid {
+        /* * CORE COMPETENCIES ICON GRID */
+        .competency-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
-        .skill-badge {
+        .comp-card {
             background: var(--badge-bg);
             border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            border-radius: 12px;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             transition: all 0.3s ease;
+        }
+
+        .comp-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.15);
+        }
+
+        .comp-icon {
+            width: 45px;
+            height: 45px;
+            margin-bottom: 15px;
+            fill: var(--primary-blue);
+        }
+
+        .comp-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            width: 100%;
+        }
+
+        .comp-services {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
         @keyframes fadeIn {
@@ -370,12 +360,6 @@
 </head>
 <body>
 
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Matrix/Dark Mode" title="Toggle Matrix/Dark Mode">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18.75a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zM6.166 18.894a.75.75 0 001.06 1.06l1.591-1.59a.75.75 0 10-1.06-1.061l-1.591 1.59zM4.5 12a.75.75 0 01-.75.75H1.5a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM6.166 5.106a.75.75 0 00-1.06 1.06l1.59 1.591a.75.75 0 101.061-1.06l-1.59-1.591z" />
-        </svg>
-    </button>
-
     <div class="hero-banner"></div>
 
     <div class="layout-container">
@@ -400,11 +384,11 @@
                 </div>
 
                 <div class="social-links">
-                    <a href="#" class="social-link" target="_blank" title="Visit LinkedIn Profile">
+                    <a href="https://www.linkedin.com/in/jaimeluciano" class="social-link" target="_blank" title="Visit LinkedIn Profile">
                         <img src="LI-In-Bug.png" alt="LinkedIn" class="social-icon">
                         LinkedIn
                     </a>
-                    <a href="#" class="social-link" target="_blank" title="Visit Twitter Profile">
+                    <a href="https://twitter.com/Caledfwlchw" class="social-link" target="_blank" title="Visit Twitter Profile">
                         <img src="twitter.png" alt="Twitter" class="social-icon">
                         Twitter
                     </a>
@@ -418,72 +402,146 @@
                 <h2 class="section-title">Executive Profile</h2>
                 
                 <div class="tab-controls">
-                    <button class="tab-btn active" onclick="switchTab(event, 'tab-professional')">The Professional</button>
-                    <button class="tab-btn" onclick="switchTab(event, 'tab-colloquial')">The Unbound Explorer</button>
-                    <button class="tab-btn" onclick="switchTab(event, 'tab-technical')">The Architectural Artisan</button>
+                    <button class="tab-btn active" onclick="switchTab(event, 'tab-professional')">Modus Operandi</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-colloquial')">Sui Generis</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-technical')">Artifex Architecturae</button>
                 </div>
 
                 <div id="tab-professional" class="tab-content active">
-                    Blending engineering precision with artistic vision, cloud architecture is approached as a modern craft. Whether designing intricate Hub-and-Spoke networks or optimizing enterprise infrastructure, perfection is found in the smallest, easily overlooked details. A deep passion for art, music, and design heavily influences this technical methodology, ensuring every solution is not just functional, but elegant and resilient. A fearless pursuit of the extraordinary drives this futuristic mindset—forged through extreme sports like paragliding, snowboarding, surfing, and completing the IRONMAN triathlon. Robust, scalable, and versatile infrastructures are built with the exact same endurance, discipline, and absolute lack of fear.
+                    Guided by an <em>ethos</em> of engineering precision and architectural integrity, cloud infrastructure is conceptualized as a rigorous discipline, <em>sui generis</em> in its execution. Whether designing <em>ubiquitous</em> inter-cloud network meshes or optimizing complex enterprise infrastructure, perfection is meticulously pursued in the most granular details. A profound appreciation for systemic design and ethical technological stewardship heavily influences this <em>modus operandi</em>, ensuring every solution is not only functional but elegantly resilient—an absolute <em>sine qua non</em> for sustainable business continuity.
                 </div>
 
                 <div id="tab-colloquial" class="tab-content">
-                    Some see cloud architecture as just servers and code; here, it is treated as a canvas. It is about being a dreamer and a visionary, bringing vibrant design and extraordinary craftsmanship into the digital space. Pushing limits is a daily routine, whether carving down a mountain on a snowboard, landing a freestyle ice skating jump, or grinding through the final miles of an IRONMAN. That distinct rhythm and relentless energy translate directly to building complex, zero-trust cloud environments. Fear simply does not factor into the equation. It is all about creating something futuristic and bold, treating massive digital transformations with the same care a craftsman gives a masterpiece.
+                    This uncompromising drive for excellence transcends the data center, frequently yielding <em>serendipitous</em> breakthroughs in logic and systemic design. Pushing both physical and cognitive limits is a daily <em>praxis</em>—whether carving down a mountain on a snowboard, navigating unpredictable swells, or executing a precise freestyle ice skating routine. That relentless vitality and distinct cadence translate <em>ipso facto</em> into the architecture of zero-trust cloud environments. Apprehension is systematically eliminated <em>ex ante</em> when engineering massive digital transformations, aligning seamlessly with the <em>vox populi</em> of modern, high-stakes technological demands.
                 </div>
 
                 <div id="tab-technical" class="tab-content">
-                    Operating at the intersection of deep technical expertise and creative design, enterprise cloud strategy is executed with relentless precision. The goal is always to engineer IT infrastructure that is as elegantly articulated as it is highly available. This methodology demands a deep appreciation for the finer details of multi-cloud federations and infrastructure-as-code deployments. The same high-performance execution required to conquer extreme challenges—from surfing unpredictable swells to surviving an IRONMAN triathlon—is applied to Zero-Trust network design. Complex architectures are designed with a fearless, versatile, and futuristic approach, ensuring scalable and resilient systems.
+                    Operating at the nexus of mission-critical execution and sophisticated design, enterprise cloud strategy demands absolute clarity and empirical rigor <em>ab initio</em>. The same peak-performance mindset necessitated to complete an IRONMAN triathlon is applied directly to the orchestration of multi-cloud federations and infrastructure-as-code deployments. Complex systems are architected with a fearless, highly versatile, and forward-looking approach, guaranteeing digital ecosystems that endure and scale as the <em>de facto</em> standard.
                 </div>
             </div>
 
             <div class="content-card">
-                <h2 class="section-title">Architectural Highlights</h2>
+                <h2 class="section-title">Architectural Praxis & Highlights</h2>
                 
                 <h3>Hybrid & Multi-Cloud Connectivity</h3>
                 <ul class="achievement-list">
-                    <li>Architected 10Gb AWS Direct Connect circuits for multi-account landing zones, ensuring strict alignment with the AWS Well‑Architected Framework.</li>
-                    <li>Designed Azure hub-and-spoke topologies featuring VNet peering, custom routing, and UDRs for ExpressRoute subscribers, guaranteeing consistent enterprise connectivity.</li>
-                    <li>Engineered secure cross-cloud federation through IPsec VPN with BGP integration for frictionless communication between AWS and Azure ecosystems.</li>
+                    <li>Engineered 10Gb AWS Direct Connect circuits for multi-account landing zones in strict adherence to the AWS Well-Architected Framework, establishing a <em>prima facie</em> benchmark for high-availability and fault tolerance.</li>
+                    <li>Designed Azure hub-and-spoke topologies featuring VNet peering, deterministic routing, and UDRs for ExpressRoute subscribers, guaranteeing <em>ubiquitous</em> and secure enterprise connectivity.</li>
+                    <li>Orchestrated secure cross-cloud federations via IPsec VPN with BGP integration, enabling frictionless, <em>inter alia</em>, bidirectional communication between AWS and Azure environments.</li>
                 </ul>
 
                 <h3>Infrastructure as Code & Automation</h3>
                 <ul class="achievement-list">
-                    <li>Championed NetDevOps adoption by authoring advanced CloudFormation templates, Terraform modules, and ARM/Bicep deployments to automate infrastructure at scale.</li>
-                    <li>Automated AWS Transit Gateway attachment orchestration, centralizing routing and security protocols for complex multi-VPC architectures.</li>
-                    <li>Constructed robust CI/CD pipelines utilizing AWS Developer Tools (CodeCommit, CodeDeploy, CodePipeline) to provision immutable infrastructure.</li>
+                    <li>Championed the adoption of NetDevOps methodologies by authoring advanced CloudFormation templates, Terraform modules, and ARM/Bicep deployments, thereby automating infrastructure at scale and achieving a <em>bona fide</em> immutable state.</li>
+                    <li>Automated AWS Transit Gateway attachment orchestration to centralize routing and security protocols, forming the <em>sine qua non</em> foundation for highly complex, multi-VPC architectures.</li>
+                    <li>Constructed robust CI/CD pipelines utilizing AWS Developer Tools to provision infrastructure as code, facilitating <em>de novo</em> environment replication and ensuring continuous, reliable deployment lifecycles.</li>
                 </ul>
 
-                <h3>Identity, Zero-Trust Security & FinOps</h3>
+                <h3>Identity, Zero-Trust Architecture & FinOps Governance</h3>
                 <ul class="achievement-list">
-                    <li>Architected comprehensive cross-cloud IAM utilizing Entra ID, Azure RBAC, and AWS IAM Identity Center under a unified governance and MFA model.</li>
-                    <li>Implemented NSX-T microsegmentation and zero-trust network boundaries mapped directly to the NIST Cybersecurity Framework (CSF) 2.0.</li>
-                    <li>Developed FinOps intelligence dashboards utilizing advanced KQL and Log Analytics to eliminate cloud waste, optimize DTO costs, and execute showback/chargeback reporting.</li>
+                    <li>Architected comprehensive cross-cloud Identity and Access Management (IAM) utilizing Microsoft Entra ID, Azure RBAC, and AWS IAM Identity Center under a unified governance and MFA model, ensuring <em>de jure</em> compliance with rigorous enterprise security postures.</li>
+                    <li>Implemented VMware NSX-T microsegmentation and absolute zero-trust network boundaries, mapping directly to the NIST Cybersecurity Framework (CSF) 2.0 to function as an <em>in situ</em> defense-in-depth mechanism.</li>
+                    <li>Engineered advanced FinOps intelligence dashboards utilizing Kusto Query Language (KQL) and Log Analytics to systematically eliminate cloud waste, optimize Data Transfer Out (DTO) costs, and execute transparent chargeback reporting, yielding significant <em>ex post</em> fiscal optimizations.</li>
                 </ul>
             </div>
 
             <div class="content-card">
                 <h2 class="section-title">Core Competencies</h2>
-                <div class="skills-grid">
-                    <div class="skill-badge">AWS Direct Connect</div>
-                    <div class="skill-badge">Azure ExpressRoute</div>
-                    <div class="skill-badge">Hub-and-Spoke</div>
-                    <div class="skill-badge">Transit Gateway</div>
-                    <div class="skill-badge">Terraform & Bicep</div>
-                    <div class="skill-badge">NetDevOps</div>
-                    <div class="skill-badge">Entra ID / IAM</div>
-                    <div class="skill-badge">Zero-Trust Security</div>
-                    <div class="skill-badge">FinOps</div>
-                    <div class="skill-badge">KQL Analytics</div>
-                    <div class="skill-badge">VMware NSX-T</div>
-                    <div class="skill-badge">Disaster Recovery</div>
+                
+                <h3 class="provider-title">
+                    <svg style="width: 28px; height: 28px; fill: currentColor; margin-right: 8px;" viewBox="0 0 24 24"><path d="M19 19H5V5h14v14zM5 3C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5zm7.36 10.38c-.37-.58-.8-1.04-1.29-1.42.49-.38.92-.84 1.29-1.42h1.61c-.57.85-1.25 1.58-2 2.15.75.57 1.43 1.3 2 2.15h-1.61zm-4.36-2.84h1.61c.37.58.8 1.04 1.29 1.42-.49.38-.92.84-1.29 1.42H8.01c.57-.85 1.25-1.58 2-2.15-.75-.57-1.43-1.3-2-2.15z"/></svg>
+                    AWS Competencies
+                </h3>
+                <div class="competency-grid">
+                    
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                        <div class="comp-title">Data & Analytics</div>
+                        <div class="comp-services">Amazon Redshift, AWS Glue, Amazon Kinesis, Amazon EMR, Amazon QuickSight</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                        <div class="comp-title">Security</div>
+                        <div class="comp-services">AWS IAM, Amazon GuardDuty, AWS WAF, AWS Shield, AWS KMS</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm6 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>
+                        <div class="comp-title">Machine Learning</div>
+                        <div class="comp-services">Amazon SageMaker, Amazon Rekognition, Amazon Lex, AWS DeepLens</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49-.12-.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                        <div class="comp-title">Cloud Operations</div>
+                        <div class="comp-services">AWS Systems Manager, AWS Config, AWS CloudFormation, Amazon CloudWatch</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M18.6 6.62c-1.44 0-2.8.56-3.77 1.53L12 10.66 10.48 12h.01L7.8 14.39c-.64.64-1.49.99-2.4.99-1.87 0-3.39-1.51-3.39-3.38S3.53 8.62 5.4 8.62c.91 0 1.76.35 2.44 1.03l1.13 1h2.51l-2.3-2.05C7.74 7.2 5.86 6.31 4.14 6.64 1.71 7.12 0 9.38 0 12c0 2.97 2.43 5.4 5.4 5.4 1.44 0 2.8-.56 3.77-1.53l2.83-2.5.01.01L13.52 12h-.01l2.69-2.39c.64-.64 1.49-.99 2.4-.99 1.87 0 3.39 1.51 3.39 3.38s-1.52 3.38-3.39 3.38c-.9 0-1.76-.35-2.44-1.03l-1.14-1h-2.51l2.3 2.05c1.44 1.4 3.32 2.29 5.04 1.96 2.43-.48 4.14-2.74 4.14-5.36C24 8.43 21.57 6 18.6 6.62z"/></svg>
+                        <div class="comp-title">DevOps</div>
+                        <div class="comp-services">AWS CodePipeline, AWS CodeBuild, AWS CodeDeploy, AWS Lambda</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.64-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                        <div class="comp-title">Migration</div>
+                        <div class="comp-services">AWS App Migration Service, AWS DMS, AWS Snowball</div>
+                    </div>
+
                 </div>
+
+                <h3 class="provider-title">
+                    <svg style="width: 28px; height: 28px; fill: currentColor; margin-right: 8px;" viewBox="0 0 24 24"><path d="M22.54 18.41L13 2.5c-.32-.54-1.1-.54-1.42 0l-5.18 8.65 6.65 11.23h8.33c.6 0 1.01-.64.71-1.17l-3.39-5.74-.01-.01c-.13-.22-.13-.49 0-.71l3.85-6.34zm-18.7-2.6L7.54 9.61 2.66 17.8c-.28.47.06 1.07.6 1.07h6.63L6.05 12.3c-.13-.22-.13-.49 0-.71l2.45-4.13-4.66 8.35z"/></svg>
+                    Azure Specializations
+                </h3>
+                <div class="competency-grid">
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M19 3l-1.5 3.5L14 8l3.5 1.5L19 13l1.5-3.5L24 8l-3.5-1.5L19 3zm-7 2L9.5 9.5 5 12l4.5 2.5L12 19l2.5-4.5L19 12l-4.5-2.5L12 5z"/></svg>
+                        <div class="comp-title">Data & AI</div>
+                        <div class="comp-services">Azure Synapse Analytics, Azure Data Factory, Azure Databricks, Azure Machine Learning</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zm-4 5h-2v-2h2v2zm-4 0h-2v-2h2v2zm8-14H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zm-4 5h-2V7h2v2zm-4 0h-2V7h2v2z"/></svg>
+                        <div class="comp-title">Infrastructure</div>
+                        <div class="comp-services">Azure Virtual Machines, Azure Virtual Desktop, Azure Stack HCI, Azure Networking</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+                        <div class="comp-title">Digital & App Innovation</div>
+                        <div class="comp-services">Azure Kubernetes Service (AKS), Azure App Service, Azure Functions, GitHub</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                        <div class="comp-title">Security</div>
+                        <div class="comp-services">Microsoft Entra ID, Microsoft Sentinel, Microsoft Defender for Cloud</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                        <div class="comp-title">Business Applications</div>
+                        <div class="comp-services">Power BI, Power Automate, Dynamics 365, Azure Logic Apps</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <svg class="comp-icon" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        <div class="comp-title">Modern Work</div>
+                        <div class="comp-services">Microsoft Teams, Microsoft 365, Viva</div>
+                    </div>
+
+                </div>
+
             </div>
 
         </main>
     </div>
 
     <script>
-        // --- Tab Switching Logic ---
         function switchTab(evt, tabId) {
             const tabContents = document.querySelectorAll('.tab-content');
             tabContents.forEach(content => content.classList.remove('active'));
@@ -494,27 +552,6 @@
             document.getElementById(tabId).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
-
-        // --- Dark/Matrix Mode Toggle Logic ---
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        
-        // Ensure default matches the new HTML attribute default
-        const savedTheme = localStorage.getItem('site-theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-
-        themeToggleBtn.addEventListener('click', () => {
-            // Get current theme state
-            let currentTheme = document.documentElement.getAttribute('data-theme');
-            let targetTheme = "light";
-
-            if (currentTheme === "light") {
-                targetTheme = "dark";
-            }
-
-            // Apply new theme and save to LocalStorage
-            document.documentElement.setAttribute('data-theme', targetTheme);
-            localStorage.setItem('site-theme', targetTheme);
-        });
     </script>
 </body>
 </html>
